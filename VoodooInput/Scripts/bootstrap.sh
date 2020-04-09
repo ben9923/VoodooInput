@@ -13,13 +13,13 @@
 #  a compiled VoodooInput release will be bootstrapped in the working directory.
 #
 #  Latest version available at:
-#  https://raw.githubusercontent.com/acidanthera/VoodooInput/master/VoodooInput/Scripts/bootstrap.sh
+#  https://raw.githubusercontent.com/ben9923/VoodooInput/fix-code-sign/VoodooInput/Scripts/bootstrap.sh
 #
 #  Example usage:
-#  src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/VoodooInput/master/VoodooInput/Scripts/bootstrap.sh) && eval "$src" || exit 1
+#  src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/ben9923/VoodooInput/fix-code-sign/VoodooInput/Scripts/bootstrap.sh) && eval "$src" || exit 1
 #
 
-REPO_PATH="acidanthera/VoodooInput"
+REPO_PATH="ben9923/VoodooInput"
 SDK_PATH="VoodooInput.kext"
 DSYM_PATH="VoodooInput.kext.dSYM"
 SDK_CHECK_PATH="${SDK_PATH}/Contents/Resources/VoodooInputMultitouch/VoodooInputMessages.h"
@@ -128,11 +128,11 @@ install_prebuilt_sdk() {
 
   echo "-> Obtaining release manifest..."
 
-  echo "-> Cloning the latest version from master..."
+  echo "-> Cloning the latest version from fix-code-sign..."
 
   # This is a really ugly hack due to GitHub API rate limits.
   local url="https://github.com/${REPO_PATH}"
-  "${GIT}" clone "${url}" -b "master" "tmp" || ret=$?
+  "${GIT}" clone "${url}" -b "fix-code-sign" "tmp" || ret=$?
   if [ $ret -ne 0 ]; then
     echo "ERROR: Failed to clone repository with code ${ret}!"
     return 1
@@ -253,10 +253,10 @@ install_compiled_sdk() {
 
   echo "Installing compiled SDK..."
 
-  echo "-> Cloning the latest version from master..."
+  echo "-> Cloning the latest version from fix-code-sign..."
 
   local url="https://github.com/${REPO_PATH}"
-  "${GIT}" clone "${url}" -b "master" --depth=1 "tmp" || ret=$?
+  "${GIT}" clone "${url}" -b "fix-code-sign" --depth=1 "tmp" || ret=$?
   if [ $ret -ne 0 ]; then
     echo "ERROR: Failed to clone repository with code ${ret}!"
     return 1
@@ -315,7 +315,7 @@ install_compiled_sdk() {
       fi
     fi
 
-    echo "Installed compiled SDK from master!"
+    echo "Installed compiled SDK from fix-code-sign!"
   done
 }
 
